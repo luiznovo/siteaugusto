@@ -257,78 +257,6 @@
             transform: translateY(-1px) scale(1.02);
             box-shadow: 0 6px 15px rgba(214, 51, 108, 0.5);
           }
-          /* Input e botão para adicionar foto */  
-          #add-photo-section {    
-            display: flex;    
-            justify-content: center;    
-            gap: 15px;    
-            flex-wrap: wrap;    
-            margin-bottom: 40px;
-            animation: slideInFromRight 1s ease-out 2.5s both;
-          }  
-          
-          #photo-url-input {    
-            width: 300px;    
-            padding: 12px 18px;    
-            border-radius: 25px;    
-            border: 3px solid #d6336c;    
-            font-size: 1rem;    
-            outline: none;    
-            transition: all 0.4s ease;
-            background: linear-gradient(145deg, #fff, #fef7fb);
-            box-shadow: 0 4px 15px rgba(214, 51, 108, 0.2);
-          }  
-          
-          #photo-url-input:focus {    
-            border-color: #a02a52;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(214, 51, 108, 0.3);
-            background: #fff;
-          }  
-          
-          #add-photo-btn {    
-            background: linear-gradient(135deg, #d6336c, #b8295a);    
-            color: white;    
-            border: none;    
-            padding: 15px 30px;    
-            font-size: 1.2rem;    
-            border-radius: 50px;    
-            cursor: pointer;    
-            box-shadow: 0 8px 20px rgba(214, 51, 108, 0.4);    
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);    
-            font-family: 'Great Vibes', cursive;    
-            user-select: none;
-            position: relative;
-            overflow: hidden;
-          }
-          
-          #add-photo-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s;
-          }
-          
-          #add-photo-btn:hover::before {
-            left: 100%;
-          }
-          
-          #add-photo-btn:hover,  
-          #add-photo-btn:focus {    
-            background: linear-gradient(135deg, #a02a52, #8a2347);    
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 12px 30px rgba(214, 51, 108, 0.6);
-            outline: none;  
-          }
-          
-          #add-photo-btn:active {
-            transform: translateY(-1px) scale(1.02);
-            box-shadow: 0 6px 15px rgba(214, 51, 108, 0.5);
-          }
           /* Player Spotify */
           #spotify-player {
             display: flex; 
@@ -347,7 +275,7 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(214, 51, 108, 0.4);
           }
-          /* Responsivo */  @media (max-width: 700px) {    .carousel-container {      width: 90vw;      height: auto;    }    .carousel img {      width: 90vw;      height: auto;      max-height: 200px;      position: relative;      top: 0 !important;      left: 0 !important;      transform: none !important;      opacity: 1 !important;      z-index: 3 !important;      margin-bottom: 10px;      border-radius: 15px;    }    .carousel img:nth-child(n+2) {      display: none !important;    }    #add-photo-section {      flex-direction: column;      align-items: center;    }    #photo-url-input {      width: 90vw;      margin-bottom: 10px;    }  }
+          /* Responsivo */  @media (max-width: 700px) {    .carousel-container {      width: 90vw;      height: auto;    }    .carousel img {      width: 90vw;      height: auto;      max-height: 200px;      position: relative;      top: 0 !important;      left: 0 !important;      transform: none !important;      opacity: 1 !important;      z-index: 3 !important;      margin-bottom: 10px;      border-radius: 15px;    }    .carousel img:nth-child(n+2) {      display: none !important;    }  }
     </style>
 </head>
 
@@ -367,11 +295,21 @@
             <button id="nextBtn" aria-label="Próxima foto">Próximo ➡️</button>
         </div>
     </div>
-    <!-- Adicionar foto -->
-    <div id="add-photo-section">
-        <input type="url" id="photo-url-input" placeholder="Cole a URL da foto e clique em Adicionar" aria-label="URL da foto para adicionar ao álbum" />
-        <button id="add-photo-btn" aria-label="Adicionar foto ao álbum">Adicionar Foto</button>
-    </div>
+    <!-- Área para colar os 10 links das fotos -->
+    <!-- 
+    COLE AQUI OS 10 LINKS DAS FOTOS (substitua os exemplos abaixo):
+    
+    Foto 1: https://exemplo.com/foto1.jpg
+    Foto 2: https://exemplo.com/foto2.jpg
+    Foto 3: https://exemplo.com/foto3.jpg
+    Foto 4: https://exemplo.com/foto4.jpg
+    Foto 5: https://exemplo.com/foto5.jpg
+    Foto 6: https://exemplo.com/foto6.jpg
+    Foto 7: https://exemplo.com/foto7.jpg
+    Foto 8: https://exemplo.com/foto8.jpg
+    Foto 9: https://exemplo.com/foto9.jpg
+    Foto 10: https://exemplo.com/foto10.jpg
+    -->
     <!-- Player Spotify embutido -->
     <div id="spotify-player" style="display:flex; justify-content:center; margin-bottom:30px;">
         <iframe src="https://open.spotify.com/embed/playlist/77PWyQTj8XXjaZugi4LL9B?si=X752HVK_SlOGGgvuUcC1VQ" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" title="Playlist Spotify"></iframe>
@@ -384,27 +322,21 @@
           // --- Álbum animado (carrossel estilo bandeja) ---  
         const carousel = document.getElementById('carousel');  
         const prevBtn = document.getElementById('prevBtn');  
-        const nextBtn = document.getElementById('nextBtn');  
-        const addPhotoBtn = document.getElementById('add-photo-btn');  
-        const photoInput = document.getElementById('photo-url-input');
+        const nextBtn = document.getElementById('nextBtn');
 
-        // Fotos padrão (exemplos reais para garantir que apareçam)  
-        const defaultPhotos = [    
-          'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',    
-          'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',    
-          'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',    
-          'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80',    
-          'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80'  
+        // Fotos pré-definidas (10 fotos) - SUBSTITUA PELOS SEUS LINKS  
+        const photos = [    
+          'https://i.postimg.cc/1t6Ktsc6/Whats-App-Image-2025-09-30-at-12-17-31.jpg',    
+          'https://i.postimg.cc/tgdTCcnC/Whats-App-Image-2025-09-30-at-12-17-27.jpg',    
+          'https://i.postimg.cc/CKp5005B/Whats-App-Image-2025-09-30-at-12-17-27-1.jpg',    
+          'https://i.postimg.cc/jjY2TT2J/Whats-App-Image-2025-09-30-at-12-17-28-1.jpg',    
+          'https://i.postimg.cc/zfYvNNv1/Whats-App-Image-2025-09-30-at-12-17-28-2.jpg',
+          'https://i.postimg.cc/nLfrxxrJ/Whats-App-Image-2025-09-30-at-12-17-29.jpg',
+          'https://i.postimg.cc/fbQyssyQ/Whats-App-Image-2025-09-30-at-12-17-29-1.jpg',
+          'https://i.postimg.cc/yNCxKKx4/Whats-App-Image-2025-09-30-at-12-17-30.jpg',
+          'https://i.postimg.cc/Jzk0S01c/Whats-App-Image-2025-09-30-at-12-17-30-1.jpg',
+          'https://i.postimg.cc/Jzk0S01c/Whats-App-Image-2025-09-30-at-12-17-30-1.jpg'
         ];
-
-        // Tenta carregar do localStorage, senão usa padrão  
-        let photos = [];  
-        try {    
-          const stored = localStorage.getItem('photos');    
-          photos = stored ? JSON.parse(stored) : defaultPhotos;  
-        } catch {    
-          photos = defaultPhotos;  
-        }
 
         let currentIndex = 0;
         let isTransitioning = false;
@@ -460,9 +392,6 @@
             isTransitioning = false;
           }, 400);
         }
-          function savePhotos() {    
-          localStorage.setItem('photos', JSON.stringify(photos));  
-        }
 
         prevBtn.addEventListener('click', () => {    
           if (!isTransitioning) {
@@ -477,9 +406,8 @@
             animateTransition();
           }
         });
-          addPhotoBtn.addEventListener('click', () => {    const url = photoInput.value.trim();    if(url && isValidUrl(url)) {      if(photos.includes(url)) {        alert('Esta foto já está no álbum.');        return;      }      photos.push(url);      savePhotos();      currentIndex = photos.length - 1; // mostra a nova foto      renderCarousel();      photoInput.value = '';    } else {      alert('Por favor, insira uma URL válida de imagem.');    }  });
-          function isValidUrl(string) {    try {      new URL(string);      return true;    } catch (_) {      return false;    }  }
-          renderCarousel();
+
+        renderCarousel();
           // --- Timer ---  const timerEl = document.getElementById('timer');  const startDate = new Date('2025-07-03T00:00:00');
           function pad(number, digits = 2) {    return number.toString().padStart(digits, '0');  }
           function updateTimer() {    const now = new Date();    let diff = now - startDate;
