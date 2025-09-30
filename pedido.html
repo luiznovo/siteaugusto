@@ -350,14 +350,8 @@
 
         function renderCarousel() {
             console.log('🎯 FUNÇÃO RENDERCAROUSEL CHAMADA!');
-            console.log('isTransitioning:', isTransitioning);
             console.log('currentIndex:', currentIndex);
             console.log('photos.length:', photos.length);
-            
-            if (isTransitioning) {
-                console.log('❌ Renderização bloqueada - transição em andamento');
-                return;
-            }
             
             console.log('✅ Iniciando renderização...');
             carousel.innerHTML = '';
@@ -389,11 +383,13 @@
         function animateTransition() {
             if (isTransitioning) return;
             
-            isTransitioning = true;
             console.log('Iniciando transição para índice:', currentIndex);
             
-            // Simplesmente renderiza o carrossel sem animações complexas
+            // PRIMEIRO renderiza o carrossel
             renderCarousel();
+            
+            // DEPOIS define o bloqueio para evitar cliques múltiplos
+            isTransitioning = true;
             
             // Libera o bloqueio após um pequeno delay
             setTimeout(() => {
