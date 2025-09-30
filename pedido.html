@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Presente para Emilly Vitoria - Álbum Animado</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap');
+          /* Reset & base */  * {    margin: 0;    padding: 0;    box-sizing: border-box;  }  body {    background: #ffe6f0;    font-family: 'Roboto', sans-serif;    color: #4a2c3a;    overflow-x: hidden;    min-height: 100vh;    display: flex;    flex-direction: column;    align-items: center;    padding: 20px;    position: relative;  }
+          /* Falling flowers animation */  .flower {    position: fixed;    top: -50px;    width: 30px;    height: 30px;    pointer-events: none;    animation-name: fall;    animation-timing-function: linear;    animation-iteration-count: infinite;    opacity: 0.8;    user-select: none;    z-index: 10;  }  @keyframes fall {    0% {      transform: translateY(0) rotate(0deg);      opacity: 0.8;    }    100% {      transform: translateY(110vh) rotate(360deg);      opacity: 0;    }  }
+          /* Title */  h1 {    font-family: 'Great Vibes', cursive;    font-size: 3.5rem;    color: #d6336c;    margin-bottom: 10px;    text-align: center;    text-shadow: 1px 1px 3px #fff;  }
+          /* Letter container */  #letter {    background: #fff0f6;    border: 2px solid #d6336c;    border-radius: 15px;    padding: 25px 30px;    max-width: 600px;    font-size: 1.2rem;    line-height: 1.6;    box-shadow: 0 0 15px rgba(214, 51, 108, 0.4);    margin-bottom: 30px;    white-space: pre-line;    user-select: text;  }
+          /* Timer */  #timer {    font-family: 'Great Vibes', cursive;    font-size: 2.5rem;    color: #d6336c;    margin-bottom: 40px;    text-align: center;    text-shadow: 1px 1px 3px #fff;    user-select: none;  }
+          /* Carousel container */  .carousel-container {    position: relative;    width: 320px;    height: 220px;    perspective: 1000px;    margin-bottom: 20px;  }  .carousel {    position: relative;    width: 320px;    height: 220px;  }  .carousel img {    position: absolute;    width: 280px;    height: 200px;    border-radius: 15px;    border: 4px solid #d6336c;    object-fit: cover;    box-shadow: 0 8px 20px rgba(214, 51, 108, 0.5);    transition: all 0.6s ease;    cursor: pointer;    user-select: none;  }  /* Camadas atrás com deslocamento e escala */  .carousel img:nth-child(1) {    top: 20px;    left: 20px;    transform: scale(0.85) rotate(-5deg);    z-index: 1;    opacity: 0.6;  }  .carousel img:nth-child(2) {    top: 10px;    left: 10px;    transform: scale(0.92) rotate(-2deg);    z-index: 2;    opacity: 0.8;  }  .carousel img:nth-child(3) {    top: 0;    left: 0;    transform: scale(1) rotate(0deg);    z-index: 3;    opacity: 1;  }  /* Esconde imagens extras */  .carousel img:nth-child(n+4) {    display: none;  }
+          /* Botões */  .btn-carousel {    display: flex;    gap: 30px;    justify-content: center;    margin-bottom: 30px;  }  .btn-carousel button {    background: #d6336c;    color: white;    border: none;    padding: 12px 25px;    font-size: 1.1rem;    border-radius: 30px;    cursor: pointer;    box-shadow: 0 5px 15px rgba(214, 51, 108, 0.5);    transition: background 0.3s ease, transform 0.2s ease;    font-family: 'Great Vibes', cursive;    user-select: none;  }  .btn-carousel button:hover,  .btn-carousel button:focus {    background: #a02a52;    transform: scale(1.05);    outline: none;  }
+          /* Input e botão para adicionar foto */  #add-photo-section {    display: flex;    justify-content: center;    gap: 10px;    flex-wrap: wrap;    margin-bottom: 40px;  }  #photo-url-input {    width: 300px;    padding: 8px 12px;    border-radius: 10px;    border: 2px solid #d6336c;    font-size: 1rem;    outline: none;    transition: border-color 0.3s ease;  }  #photo-url-input:focus {    border-color: #a02a52;  }  #add-photo-btn {    background: #d6336c;    color: white;    border: none;    padding: 12px 25px;    font-size: 1.1rem;    border-radius: 30px;    cursor: pointer;    box-shadow: 0 5px 15px rgba(214, 51, 108, 0.5);    transition: background 0.3s ease, transform 0.2s ease;    font-family: 'Great Vibes', cursive;    user-select: none;  }  #add-photo-btn:hover,  #add-photo-btn:focus {    background: #a02a52;    transform: scale(1.05);    outline: none;  }
+          /* Botões de música */  .btn-music {    display: flex;    gap: 20px;    justify-content: center;    margin-bottom: 30px;  }  .btn-music button {    background: #d6336c;    color: white;    border: none;    padding: 12px 25px;    font-size: 1.1rem;    border-radius: 30px;    cursor: pointer;    box-shadow: 0 5px 15px rgba(214, 51, 108, 0.5);    transition: background 0.3s ease, transform 0.2s ease;    font-family: 'Great Vibes', cursive;    user-select: none;  }  .btn-music button:hover,  .btn-music button:focus {    background: #a02a52;    transform: scale(1.05);    outline: none;  }
+          /* Responsivo */  @media (max-width: 700px) {    .carousel-container {      width: 90vw;      height: auto;    }    .carousel img {      width: 90vw;      height: auto;      max-height: 200px;      position: relative;      top: 0 !important;      left: 0 !important;      transform: none !important;      opacity: 1 !important;      z-index: 3 !important;      margin-bottom: 10px;      border-radius: 15px;    }    .carousel img:nth-child(n+2) {      display: none !important;    }    #add-photo-section {      flex-direction: column;      align-items: center;    }    #photo-url-input {      width: 90vw;      margin-bottom: 10px;    }  }
+    </style>
+</head>
+
+<body>
+    <h1>Para minha princesa Emilly Vitoria</h1>
+    <div id="letter" aria-label="Carta de amor">Hoje criei esse presente simples pra você, espero que você goste, pra dedicar um poquinho do meu amor que eu tenho por você, minha princesa bravinha, e quero falar que eu quero casar com você, ter nossos tão sonhando filhos (2 filhos), e não deixar
+        que ninguém ou nenhuma briga boba acabe com nosso relacionamento. Te amo até meu último suspiro 💖❤️❤️‍🩹💍 — Luiz Augusto</div>
+    <div id="timer" aria-live="polite" aria-atomic="true" aria-label="Contador de tempo juntos"> Carregando tempo juntos...</div>
+    <!-- Álbum animado -->
+    <h2>Nosso Álbum Animado</h2>
+    <div class="carousel-container" aria-label="Carrossel de fotos" role="region">
+        <div class="carousel" id="carousel" tabindex="0" aria-live="polite" aria-atomic="true">
+            <!-- Fotos aparecem aqui -->
+        </div>
+        <div class="btn-carousel">
+            <button id="prevBtn" aria-label="Foto anterior">⬅️ Anterior</button>
+            <button id="nextBtn" aria-label="Próxima foto">Próximo ➡️</button>
+        </div>
+    </div>
+    <!-- Adicionar foto -->
+    <div id="add-photo-section">
+        <input type="url" id="photo-url-input" placeholder="Cole a URL da foto e clique em Adicionar" aria-label="URL da foto para adicionar ao álbum" />
+        <button id="add-photo-btn" aria-label="Adicionar foto ao álbum">Adicionar Foto</button>
+    </div>
+    <!-- Player Spotify embutido -->
+    <div id="spotify-player" style="display:flex; justify-content:center; margin-bottom:30px;">
+        <iframe src="https://open.spotify.com/embed/playlist/77PWyQTj8XXjaZugi4LL9B?si=X752HVK_SlOGGgvuUcC1VQ" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" title="Playlist Spotify"></iframe>
+    </div>
+    <script>
+        // --- Falling flowers effect ---  const flowerEmoji = '🌸';  const flowerCount = 30;
+          function createFlower() {    const flower = document.createElement('div');    flower.classList.add('flower');    flower.textContent = flowerEmoji;    flower.style.left = Math.random() * 100 + 'vw';    flower.style.animationDuration = (5 + Math.random() * 5) + 's';    flower.style.fontSize = (20 + Math.random() * 20) + 'px';    flower.style.opacity = 0.7 + Math.random() * 0.3;    document.body.appendChild(flower);
+            flower.addEventListener('animationend', () => {      flower.style.left = Math.random() * 100 + 'vw';      flower.style.animationDuration = (5 + Math.random() * 5) + 's';      flower.style.fontSize = (20 + Math.random() * 20) + 'px';      flower.style.opacity = 0.7 + Math.random() * 0.3;      flower.style.animation = 'none';      void flower.offsetWidth;      flower.style.animation = '';    });  }
+          for(let i = 0; i < flowerCount; i++) {    createFlower();  }
+          // --- Álbum animado (carrossel estilo bandeja) ---  const carousel = document.getElementById('carousel');  const prevBtn = document.getElementById('prevBtn');  const nextBtn = document.getElementById('nextBtn');  const addPhotoBtn = document.getElementById('add-photo-btn');  const photoInput = document.getElementById('photo-url-input');
+          // Fotos padrão (exemplos reais para garantir que apareçam)  const defaultPhotos = [    'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',    'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',    'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',    'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80',    'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80'  ];
+          // Tenta carregar do localStorage, senão usa padrão  let photos = [];  try {    const stored = localStorage.getItem('photos');    photos = stored ? JSON.parse(stored) : defaultPhotos;  } catch {    photos = defaultPhotos;  }
+          let currentIndex = 0;
+          function renderCarousel() {    carousel.innerHTML = '';    // Mostra 3 fotos: atual + 2 atrás (para efeito bandeja)    for(let i = 2; i >= 0; i--) {      let index = (currentIndex - i + photos.length) % photos.length;      const img = document.createElement('img');      img.src = photos[index];      img.alt = `Foto ${index + 1} do álbum`;      img.setAttribute('tabindex', '0');      img.title = 'Clique para trazer esta foto para frente';      img.addEventListener('click', () => {        currentIndex = index;        renderCarousel();      });      carousel.appendChild(img);    }  }
+          function savePhotos() {    localStorage.setItem('photos', JSON.stringify(photos));  }
+          prevBtn.addEventListener('click', () => {    currentIndex = (currentIndex - 1 + photos.length) % photos.length;    renderCarousel();  });
+          nextBtn.addEventListener('click', () => {    currentIndex = (currentIndex + 1) % photos.length;    renderCarousel();  });
+          addPhotoBtn.addEventListener('click', () => {    const url = photoInput.value.trim();    if(url && isValidUrl(url)) {      if(photos.includes(url)) {        alert('Esta foto já está no álbum.');        return;      }      photos.push(url);      savePhotos();      currentIndex = photos.length - 1; // mostra a nova foto      renderCarousel();      photoInput.value = '';    } else {      alert('Por favor, insira uma URL válida de imagem.');    }  });
+          function isValidUrl(string) {    try {      new URL(string);      return true;    } catch (_) {      return false;    }  }
+          renderCarousel();
+          // --- Timer ---  const timerEl = document.getElementById('timer');  const startDate = new Date('2025-07-03T00:00:00');
+          function pad(number, digits = 2) {    return number.toString().padStart(digits, '0');  }
+          function updateTimer() {    const now = new Date();    let diff = now - startDate;
+            if(diff < 0) {      timerEl.textContent = 'Ainda não começamos nosso namoro! ❤️';      return;    }
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));    diff -= days * (1000 * 60 * 60 * 24);
+            const hours = Math.floor(diff / (1000 * 60 * 60));    diff -= hours * (1000 * 60 * 60);
+            const minutes = Math.floor(diff / (1000 * 60));    diff -= minutes * (1000 * 60);
+            const seconds = Math.floor(diff / 1000);
+            timerEl.textContent = `Juntos há: ${days} dias ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;  }
+          updateTimer();  setInterval(updateTimer, 1000);
+    </script>
+</body>
+
+</html>
