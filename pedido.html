@@ -213,7 +213,7 @@
             text-shadow: 1px 1px 3px rgba(214, 51, 108, 0.3);
             animation: slideInFromLeft 1s ease-out 1.5s both;
           }
-          /* Letter container */  #letter {    background: linear-gradient(145deg, #fff0f6, #ffeef5);    border: 2px solid #d6336c;    border-radius: 15px;    padding: 25px 30px;    max-width: 600px;    font-size: 1.2rem;    line-height: 1.6;    box-shadow: 0 8px 25px rgba(214, 51, 108, 0.3), 0 0 20px rgba(255, 255, 255, 0.5) inset;    margin-bottom: 30px;    white-space: pre-line;    user-select: text;    animation: scaleIn 1s ease-out 0.8s both;    transition: transform 0.3s ease, box-shadow 0.3s ease;  }
+          /* Letter container */  #letter {    background: linear-gradient(145deg, #fff0f6, #ffeef5);    border: 2px solid #d6336c;    border-radius: 15px;    padding: 25px 30px;    max-width: 600px;    font-size: 1.2rem;    line-height: 1.6;    box-shadow: 0 8px 25px rgba(214, 51, 108, 0.3), 0 0 20px rgba(255, 255, 255, 0.5) inset;    margin: 0 auto 30px auto;    white-space: pre-line;    user-select: text;    animation: scaleIn 1s ease-out 0.8s both;    transition: transform 0.3s ease, box-shadow 0.3s ease;    text-align: center;  }
           
           #letter:hover {
             transform: translateY(-5px);
@@ -227,14 +227,15 @@
             width: 320px;    
             height: 220px;    
             perspective: 1000px;    
-            margin-bottom: 30px;
+            margin: 0 auto 30px auto;
             animation: scaleIn 1s ease-out 1.8s both;
           }  
           
           .carousel {    
             position: relative;    
             width: 320px;    
-            height: 220px;  
+            height: 220px;
+            margin: 0 auto;
           }  
           
           .carousel img {    
@@ -249,7 +250,7 @@
             cursor: pointer;    
             user-select: none;
             top: 0;
-            left: 0;
+            left: 20px;
             opacity: 1 !important;
             transform: scale(1) rotate(0deg) !important;
             z-index: 3 !important;
@@ -323,7 +324,7 @@
           #spotify-player {
             display: flex; 
             justify-content: center; 
-            margin: 80px 0 50px 0;
+            margin: 120px 0 80px 0;
             animation: fadeIn 1s ease-out 3s both;
           }
           
