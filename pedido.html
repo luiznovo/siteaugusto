@@ -320,6 +320,86 @@
             transform: translateY(-1px) scale(1.02);
             box-shadow: 0 6px 15px rgba(214, 51, 108, 0.5);
           }
+          
+          /* Cronômetro do relacionamento */
+          #relationship-timer {
+            text-align: center;
+            margin: 110px auto 60px auto;
+            max-width: 800px;
+            background: linear-gradient(145deg, #fff0f6, #ffeef5);
+            border: 2px solid #d6336c;
+            border-radius: 20px;
+            padding: 30px 20px;
+            box-shadow: 0 10px 30px rgba(214, 51, 108, 0.3), 0 0 20px rgba(255, 255, 255, 0.5) inset;
+            animation: scaleIn 1s ease-out 2.5s both;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            z-index: 1;
+          }
+          
+          #relationship-timer:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(214, 51, 108, 0.4), 0 0 25px rgba(255, 255, 255, 0.6) inset;
+          }
+          
+          #relationship-timer h3 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: #d6336c;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 6px rgba(214, 51, 108, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+          }
+          
+          .timer-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            justify-items: center;
+          }
+          
+          .timer-item {
+            background: linear-gradient(135deg, #ffb3d9, #ffd1e3);
+            border: 2px solid #d6336c;
+            border-radius: 15px;
+            padding: 15px 10px;
+            min-width: 80px;
+            box-shadow: 0 5px 15px rgba(214, 51, 108, 0.2);
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+          }
+          
+          .timer-item:nth-child(2) { animation-delay: 0.5s; }
+          .timer-item:nth-child(3) { animation-delay: 1s; }
+          .timer-item:nth-child(4) { animation-delay: 1.5s; }
+          .timer-item:nth-child(5) { animation-delay: 2s; }
+          
+          .timer-item:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(214, 51, 108, 0.4);
+          }
+          
+          .timer-number {
+            display: block;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #d6336c;
+            text-shadow: 1px 1px 3px rgba(214, 51, 108, 0.3);
+            margin-bottom: 5px;
+            animation: pulse 2s ease-in-out infinite;
+          }
+          
+          .timer-label {
+            display: block;
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.9rem;
+            color: #4a2c3a;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+          }
+          
           /* Player Spotify */
           #spotify-player {
             display: flex; 
@@ -381,6 +461,35 @@
               padding: 12px 25px;
               font-size: 1.1rem;
             }
+            
+            /* Timer responsivo */
+            #relationship-timer {
+              margin: 30px 15px 40px 15px;
+              padding: 20px 15px;
+            }
+            
+            #relationship-timer h3 {
+              font-size: 1.8rem;
+              margin-bottom: 20px;
+            }
+            
+            .timer-grid {
+              grid-template-columns: repeat(3, 1fr);
+              gap: 10px;
+            }
+            
+            .timer-item {
+              padding: 12px 8px;
+              min-width: 70px;
+            }
+            
+            .timer-number {
+              font-size: 1.5rem;
+            }
+            
+            .timer-label {
+              font-size: 0.8rem;
+            }
           }
     </style>
 </head>
@@ -399,7 +508,7 @@
         <h1>Para minha princesa Emilly Vitoria</h1>
     <div id="letter" aria-label="Carta de amor">Hoje criei esse presente simples pra você, espero que você goste, pra dedicar um poquinho do meu amor que eu tenho por você, minha princesa bravinha, e quero falar que eu quero casar com você, ter nossos tão sonhando filhos (2 filhos), e não deixar
         que ninguém ou nenhuma briga boba acabe com nosso relacionamento. Te amo até meu último suspiro 💖❤️❤️‍🩹💍 — Luiz Augusto</div>
-    <div id="timer" aria-live="polite" aria-atomic="true" aria-label="Contador de tempo juntos"> Carregando tempo juntos...</div>
+    <div id="timer" aria-live="polite" aria-atomic="true" aria-label="Contador de tempo juntos"> </div>
     <!-- Álbum animado -->
     <h2>Nosso Álbum Animado</h2>
     <div class="carousel-container" aria-label="Carrossel de fotos" role="region">
@@ -411,6 +520,34 @@
             <button id="nextBtn" aria-label="Próxima foto">Próximo ➡️</button>
         </div>
     </div>
+    
+    <!-- Cronômetro do relacionamento -->
+    <div id="relationship-timer" aria-label="Cronômetro do relacionamento">
+        <h3>Estamos juntos a...</h3>
+        <div class="timer-grid">
+            <div class="timer-item">
+                <span class="timer-number" id="seconds">0</span>
+                <span class="timer-label">Segundos</span>
+            </div>
+            <div class="timer-item">
+                <span class="timer-number" id="hours">0</span>
+                <span class="timer-label">Horas</span>
+            </div>
+            <div class="timer-item">
+                <span class="timer-number" id="days">0</span>
+                <span class="timer-label">Dias</span>
+            </div>
+            <div class="timer-item">
+                <span class="timer-number" id="weeks">0</span>
+                <span class="timer-label">Semanas</span>
+            </div>
+            <div class="timer-item">
+                <span class="timer-number" id="months">0</span>
+                <span class="timer-label">Meses</span>
+            </div>
+        </div>
+    </div>
+    
     <!-- Área para colar os 10 links das fotos -->
     <!-- 
     COLE AQUI OS 10 LINKS DAS FOTOS (substitua os exemplos abaixo):
@@ -586,6 +723,63 @@
         
         // Inicializar carrossel
         renderCarousel();
+        
+        // --- Cronômetro do relacionamento ---
+        function updateRelationshipTimer() {
+            // Data de início do relacionamento: 03/07/2025
+            const startDate = new Date('2025-07-03T00:00:00');
+            const now = new Date();
+            
+            // Calcular diferença em milissegundos
+            const diffMs = now - startDate;
+            
+            // Se a data ainda não chegou, mostrar zeros
+            if (diffMs < 0) {
+                document.getElementById('seconds').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('days').textContent = '0';
+                document.getElementById('weeks').textContent = '0';
+                document.getElementById('months').textContent = '0';
+                return;
+            }
+            
+            // Calcular unidades de tempo
+            const seconds = Math.floor(diffMs / 1000);
+            const hours = Math.floor(diffMs / (1000 * 60 * 60));
+            const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            const weeks = Math.floor(days / 7);
+            
+            // Calcular meses (aproximado)
+            const months = Math.floor(days / 30.44); // Média de dias por mês
+            
+            // Atualizar elementos na tela com animação de números
+            function animateNumber(elementId, newValue) {
+                const element = document.getElementById(elementId);
+                const currentValue = parseInt(element.textContent) || 0;
+                
+                if (currentValue !== newValue) {
+                    element.style.transform = 'scale(1.2)';
+                    element.style.color = '#ff69b4';
+                    
+                    setTimeout(() => {
+                        element.textContent = newValue.toLocaleString('pt-BR');
+                        element.style.transform = 'scale(1)';
+                        element.style.color = '#d6336c';
+                    }, 150);
+                }
+            }
+            
+            // Atualizar todos os valores
+            animateNumber('seconds', seconds);
+            animateNumber('hours', hours);
+            animateNumber('days', days);
+            animateNumber('weeks', weeks);
+            animateNumber('months', months);
+        }
+        
+        // Atualizar cronômetro a cada segundo
+        updateRelationshipTimer();
+        setInterval(updateRelationshipTimer, 1000);
     </script>
     </div>
 </body>
