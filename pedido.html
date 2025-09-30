@@ -7,15 +7,346 @@
     <title>Presente para Emilly Vitoria - Álbum Animado</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto&display=swap');
-          /* Reset & base */  * {    margin: 0;    padding: 0;    box-sizing: border-box;  }  body {    background: #ffe6f0;    font-family: 'Roboto', sans-serif;    color: #4a2c3a;    overflow-x: hidden;    min-height: 100vh;    display: flex;    flex-direction: column;    align-items: center;    padding: 20px;    position: relative;  }
-          /* Falling flowers animation */  .flower {    position: fixed;    top: -50px;    width: 30px;    height: 30px;    pointer-events: none;    animation-name: fall;    animation-timing-function: linear;    animation-iteration-count: infinite;    opacity: 0.8;    user-select: none;    z-index: 10;  }  @keyframes fall {    0% {      transform: translateY(0) rotate(0deg);      opacity: 0.8;    }    100% {      transform: translateY(110vh) rotate(360deg);      opacity: 0;    }  }
-          /* Title */  h1 {    font-family: 'Great Vibes', cursive;    font-size: 3.5rem;    color: #d6336c;    margin-bottom: 10px;    text-align: center;    text-shadow: 1px 1px 3px #fff;  }
-          /* Letter container */  #letter {    background: #fff0f6;    border: 2px solid #d6336c;    border-radius: 15px;    padding: 25px 30px;    max-width: 600px;    font-size: 1.2rem;    line-height: 1.6;    box-shadow: 0 0 15px rgba(214, 51, 108, 0.4);    margin-bottom: 30px;    white-space: pre-line;    user-select: text;  }
-          /* Timer */  #timer {    font-family: 'Great Vibes', cursive;    font-size: 2.5rem;    color: #d6336c;    margin-bottom: 40px;    text-align: center;    text-shadow: 1px 1px 3px #fff;    user-select: none;  }
-          /* Carousel container */  .carousel-container {    position: relative;    width: 320px;    height: 220px;    perspective: 1000px;    margin-bottom: 20px;  }  .carousel {    position: relative;    width: 320px;    height: 220px;  }  .carousel img {    position: absolute;    width: 280px;    height: 200px;    border-radius: 15px;    border: 4px solid #d6336c;    object-fit: cover;    box-shadow: 0 8px 20px rgba(214, 51, 108, 0.5);    transition: all 0.6s ease;    cursor: pointer;    user-select: none;  }  /* Camadas atrás com deslocamento e escala */  .carousel img:nth-child(1) {    top: 20px;    left: 20px;    transform: scale(0.85) rotate(-5deg);    z-index: 1;    opacity: 0.6;  }  .carousel img:nth-child(2) {    top: 10px;    left: 10px;    transform: scale(0.92) rotate(-2deg);    z-index: 2;    opacity: 0.8;  }  .carousel img:nth-child(3) {    top: 0;    left: 0;    transform: scale(1) rotate(0deg);    z-index: 3;    opacity: 1;  }  /* Esconde imagens extras */  .carousel img:nth-child(n+4) {    display: none;  }
-          /* Botões */  .btn-carousel {    display: flex;    gap: 30px;    justify-content: center;    margin-bottom: 30px;  }  .btn-carousel button {    background: #d6336c;    color: white;    border: none;    padding: 12px 25px;    font-size: 1.1rem;    border-radius: 30px;    cursor: pointer;    box-shadow: 0 5px 15px rgba(214, 51, 108, 0.5);    transition: background 0.3s ease, transform 0.2s ease;    font-family: 'Great Vibes', cursive;    user-select: none;  }  .btn-carousel button:hover,  .btn-carousel button:focus {    background: #a02a52;    transform: scale(1.05);    outline: none;  }
-          /* Input e botão para adicionar foto */  #add-photo-section {    display: flex;    justify-content: center;    gap: 10px;    flex-wrap: wrap;    margin-bottom: 40px;  }  #photo-url-input {    width: 300px;    padding: 8px 12px;    border-radius: 10px;    border: 2px solid #d6336c;    font-size: 1rem;    outline: none;    transition: border-color 0.3s ease;  }  #photo-url-input:focus {    border-color: #a02a52;  }  #add-photo-btn {    background: #d6336c;    color: white;    border: none;    padding: 12px 25px;    font-size: 1.1rem;    border-radius: 30px;    cursor: pointer;    box-shadow: 0 5px 15px rgba(214, 51, 108, 0.5);    transition: background 0.3s ease, transform 0.2s ease;    font-family: 'Great Vibes', cursive;    user-select: none;  }  #add-photo-btn:hover,  #add-photo-btn:focus {    background: #a02a52;    transform: scale(1.05);    outline: none;  }
-          /* Botões de música */  .btn-music {    display: flex;    gap: 20px;    justify-content: center;    margin-bottom: 30px;  }  .btn-music button {    background: #d6336c;    color: white;    border: none;    padding: 12px 25px;    font-size: 1.1rem;    border-radius: 30px;    cursor: pointer;    box-shadow: 0 5px 15px rgba(214, 51, 108, 0.5);    transition: background 0.3s ease, transform 0.2s ease;    font-family: 'Great Vibes', cursive;    user-select: none;  }  .btn-music button:hover,  .btn-music button:focus {    background: #a02a52;    transform: scale(1.05);    outline: none;  }
+          /* Reset & base */  * {    margin: 0;    padding: 0;    box-sizing: border-box;  }  body {    background: linear-gradient(135deg, #ffe6f0 0%, #ffd1e3 50%, #ffb3d9 100%);    font-family: 'Roboto', sans-serif;    color: #4a2c3a;    overflow-x: hidden;    min-height: 100vh;    display: flex;    flex-direction: column;    align-items: center;    padding: 20px;    position: relative;    animation: fadeIn 1s ease-in-out;  }
+          
+          /* Animações de entrada */
+          @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+          }
+          
+          @keyframes slideInFromTop {
+            from { 
+              opacity: 0; 
+              transform: translateY(-50px); 
+            }
+            to { 
+              opacity: 1; 
+              transform: translateY(0); 
+            }
+          }
+          
+          @keyframes slideInFromLeft {
+            from { 
+              opacity: 0; 
+              transform: translateX(-50px); 
+            }
+            to { 
+              opacity: 1; 
+              transform: translateX(0); 
+            }
+          }
+          
+          @keyframes slideInFromRight {
+            from { 
+              opacity: 0; 
+              transform: translateX(50px); 
+            }
+            to { 
+              opacity: 1; 
+              transform: translateX(0); 
+            }
+          }
+          
+          @keyframes scaleIn {
+            from { 
+              opacity: 0; 
+              transform: scale(0.8); 
+            }
+            to { 
+              opacity: 1; 
+              transform: scale(1); 
+            }
+          }
+          
+          @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+          }
+          
+          @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+          }
+          /* Falling flowers animation */  
+          .flower {    
+            position: fixed;    
+            top: -50px;    
+            width: 30px;    
+            height: 30px;    
+            pointer-events: none;    
+            animation-name: fall;    
+            animation-timing-function: linear;    
+            animation-iteration-count: infinite;    
+            opacity: 0.8;    
+            user-select: none;    
+            z-index: 10;
+            filter: drop-shadow(0 2px 4px rgba(214, 51, 108, 0.3));
+          }  
+          
+          @keyframes fall {    
+            0% {      
+              transform: translateY(0) rotate(0deg);      
+              opacity: 0.8;    
+            }    
+            100% {      
+              transform: translateY(110vh) rotate(360deg);      
+              opacity: 0;    
+            }  
+          }
+          
+          /* Efeito de brilho animado no fundo */
+          body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(214, 51, 108, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 182, 217, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 40% 40%, rgba(214, 51, 108, 0.05) 0%, transparent 50%);
+            animation: shimmer 8s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: 1;
+          }
+          
+          @keyframes shimmer {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+          }
+          
+          /* Garantir que o conteúdo fique acima do efeito de fundo */
+          h1, #letter, #timer, .carousel-container, #add-photo-section, #spotify-player {
+            position: relative;
+            z-index: 2;
+          }
+          /* Title */  h1 {    font-family: 'Great Vibes', cursive;    font-size: 3.5rem;    color: #d6336c;    margin-bottom: 10px;    text-align: center;    text-shadow: 2px 2px 6px rgba(214, 51, 108, 0.3);    animation: slideInFromTop 1.2s ease-out 0.2s both;  }
+          
+          h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #d6336c;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(214, 51, 108, 0.3);
+            animation: slideInFromLeft 1s ease-out 1.5s both;
+          }
+          /* Letter container */  #letter {    background: linear-gradient(145deg, #fff0f6, #ffeef5);    border: 2px solid #d6336c;    border-radius: 15px;    padding: 25px 30px;    max-width: 600px;    font-size: 1.2rem;    line-height: 1.6;    box-shadow: 0 8px 25px rgba(214, 51, 108, 0.3), 0 0 20px rgba(255, 255, 255, 0.5) inset;    margin-bottom: 30px;    white-space: pre-line;    user-select: text;    animation: scaleIn 1s ease-out 0.8s both;    transition: transform 0.3s ease, box-shadow 0.3s ease;  }
+          
+          #letter:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(214, 51, 108, 0.4), 0 0 25px rgba(255, 255, 255, 0.6) inset;
+          }
+          
+          /* Timer */  #timer {    font-family: 'Great Vibes', cursive;    font-size: 2.5rem;    color: #d6336c;    margin-bottom: 40px;    text-align: center;    text-shadow: 2px 2px 6px rgba(214, 51, 108, 0.3);    user-select: none;    animation: slideInFromRight 1s ease-out 1.2s both, float 3s ease-in-out infinite 2s;  }
+          /* Carousel container */  
+          .carousel-container {    
+            position: relative;    
+            width: 320px;    
+            height: 220px;    
+            perspective: 1000px;    
+            margin-bottom: 30px;
+            animation: scaleIn 1s ease-out 1.8s both;
+          }  
+          
+          .carousel {    
+            position: relative;    
+            width: 320px;    
+            height: 220px;  
+          }  
+          
+          .carousel img {    
+            position: absolute;    
+            width: 280px;    
+            height: 200px;    
+            border-radius: 15px;    
+            border: 4px solid #d6336c;    
+            object-fit: cover;    
+            box-shadow: 0 8px 20px rgba(214, 51, 108, 0.5);    
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);    
+            cursor: pointer;    
+            user-select: none;  
+          }  
+          
+          .carousel img:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 0 12px 30px rgba(214, 51, 108, 0.7);
+            z-index: 10 !important;
+          }
+          
+          /* Camadas atrás com deslocamento e escala */  
+          .carousel img:nth-child(1) {    
+            top: 20px;    
+            left: 20px;    
+            transform: scale(0.85) rotate(-5deg);    
+            z-index: 1;    
+            opacity: 0.6;  
+          }  
+          
+          .carousel img:nth-child(2) {    
+            top: 10px;    
+            left: 10px;    
+            transform: scale(0.92) rotate(-2deg);    
+            z-index: 2;    
+            opacity: 0.8;  
+          }  
+          
+          .carousel img:nth-child(3) {    
+            top: 0;    
+            left: 0;    
+            transform: scale(1) rotate(0deg);    
+            z-index: 3;    
+            opacity: 1;  
+          }  
+          
+          /* Esconde imagens extras */  
+          .carousel img:nth-child(n+4) {    
+            display: none;  
+          }
+          /* Botões do Carrossel */  
+          .btn-carousel {    
+            display: flex;    
+            gap: 30px;    
+            justify-content: center;    
+            margin-top: 20px;
+            margin-bottom: 30px;
+            animation: slideInFromLeft 1s ease-out 2.2s both;
+          }  
+          
+          .btn-carousel button {    
+            background: linear-gradient(135deg, #d6336c, #b8295a);    
+            color: white;    
+            border: none;    
+            padding: 15px 30px;    
+            font-size: 1.2rem;    
+            border-radius: 50px;    
+            cursor: pointer;    
+            box-shadow: 0 8px 20px rgba(214, 51, 108, 0.4);    
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);    
+            font-family: 'Great Vibes', cursive;    
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+          }
+          
+          .btn-carousel button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+          }
+          
+          .btn-carousel button:hover::before {
+            left: 100%;
+          }
+          
+          .btn-carousel button:hover,  
+          .btn-carousel button:focus {    
+            background: linear-gradient(135deg, #a02a52, #8a2347);    
+            transform: translateY(-3px) scale(1.05);    
+            box-shadow: 0 12px 30px rgba(214, 51, 108, 0.6);
+            outline: none;  
+          }
+          
+          .btn-carousel button:active {
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 6px 15px rgba(214, 51, 108, 0.5);
+          }
+          /* Input e botão para adicionar foto */  
+          #add-photo-section {    
+            display: flex;    
+            justify-content: center;    
+            gap: 15px;    
+            flex-wrap: wrap;    
+            margin-bottom: 40px;
+            animation: slideInFromRight 1s ease-out 2.5s both;
+          }  
+          
+          #photo-url-input {    
+            width: 300px;    
+            padding: 12px 18px;    
+            border-radius: 25px;    
+            border: 3px solid #d6336c;    
+            font-size: 1rem;    
+            outline: none;    
+            transition: all 0.4s ease;
+            background: linear-gradient(145deg, #fff, #fef7fb);
+            box-shadow: 0 4px 15px rgba(214, 51, 108, 0.2);
+          }  
+          
+          #photo-url-input:focus {    
+            border-color: #a02a52;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(214, 51, 108, 0.3);
+            background: #fff;
+          }  
+          
+          #add-photo-btn {    
+            background: linear-gradient(135deg, #d6336c, #b8295a);    
+            color: white;    
+            border: none;    
+            padding: 15px 30px;    
+            font-size: 1.2rem;    
+            border-radius: 50px;    
+            cursor: pointer;    
+            box-shadow: 0 8px 20px rgba(214, 51, 108, 0.4);    
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);    
+            font-family: 'Great Vibes', cursive;    
+            user-select: none;
+            position: relative;
+            overflow: hidden;
+          }
+          
+          #add-photo-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+          }
+          
+          #add-photo-btn:hover::before {
+            left: 100%;
+          }
+          
+          #add-photo-btn:hover,  
+          #add-photo-btn:focus {    
+            background: linear-gradient(135deg, #a02a52, #8a2347);    
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(214, 51, 108, 0.6);
+            outline: none;  
+          }
+          
+          #add-photo-btn:active {
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 6px 15px rgba(214, 51, 108, 0.5);
+          }
+          /* Player Spotify */
+          #spotify-player {
+            display: flex; 
+            justify-content: center; 
+            margin-bottom: 30px;
+            animation: scaleIn 1s ease-out 2.8s both;
+          }
+          
+          #spotify-player iframe {
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(214, 51, 108, 0.3);
+            transition: all 0.4s ease;
+          }
+          
+          #spotify-player iframe:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(214, 51, 108, 0.4);
+          }
           /* Responsivo */  @media (max-width: 700px) {    .carousel-container {      width: 90vw;      height: auto;    }    .carousel img {      width: 90vw;      height: auto;      max-height: 200px;      position: relative;      top: 0 !important;      left: 0 !important;      transform: none !important;      opacity: 1 !important;      z-index: 3 !important;      margin-bottom: 10px;      border-radius: 15px;    }    .carousel img:nth-child(n+2) {      display: none !important;    }    #add-photo-section {      flex-direction: column;      align-items: center;    }    #photo-url-input {      width: 90vw;      margin-bottom: 10px;    }  }
     </style>
 </head>
@@ -50,14 +381,102 @@
           function createFlower() {    const flower = document.createElement('div');    flower.classList.add('flower');    flower.textContent = flowerEmoji;    flower.style.left = Math.random() * 100 + 'vw';    flower.style.animationDuration = (5 + Math.random() * 5) + 's';    flower.style.fontSize = (20 + Math.random() * 20) + 'px';    flower.style.opacity = 0.7 + Math.random() * 0.3;    document.body.appendChild(flower);
             flower.addEventListener('animationend', () => {      flower.style.left = Math.random() * 100 + 'vw';      flower.style.animationDuration = (5 + Math.random() * 5) + 's';      flower.style.fontSize = (20 + Math.random() * 20) + 'px';      flower.style.opacity = 0.7 + Math.random() * 0.3;      flower.style.animation = 'none';      void flower.offsetWidth;      flower.style.animation = '';    });  }
           for(let i = 0; i < flowerCount; i++) {    createFlower();  }
-          // --- Álbum animado (carrossel estilo bandeja) ---  const carousel = document.getElementById('carousel');  const prevBtn = document.getElementById('prevBtn');  const nextBtn = document.getElementById('nextBtn');  const addPhotoBtn = document.getElementById('add-photo-btn');  const photoInput = document.getElementById('photo-url-input');
-          // Fotos padrão (exemplos reais para garantir que apareçam)  const defaultPhotos = [    'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',    'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',    'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',    'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80',    'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80'  ];
-          // Tenta carregar do localStorage, senão usa padrão  let photos = [];  try {    const stored = localStorage.getItem('photos');    photos = stored ? JSON.parse(stored) : defaultPhotos;  } catch {    photos = defaultPhotos;  }
-          let currentIndex = 0;
-          function renderCarousel() {    carousel.innerHTML = '';    // Mostra 3 fotos: atual + 2 atrás (para efeito bandeja)    for(let i = 2; i >= 0; i--) {      let index = (currentIndex - i + photos.length) % photos.length;      const img = document.createElement('img');      img.src = photos[index];      img.alt = `Foto ${index + 1} do álbum`;      img.setAttribute('tabindex', '0');      img.title = 'Clique para trazer esta foto para frente';      img.addEventListener('click', () => {        currentIndex = index;        renderCarousel();      });      carousel.appendChild(img);    }  }
-          function savePhotos() {    localStorage.setItem('photos', JSON.stringify(photos));  }
-          prevBtn.addEventListener('click', () => {    currentIndex = (currentIndex - 1 + photos.length) % photos.length;    renderCarousel();  });
-          nextBtn.addEventListener('click', () => {    currentIndex = (currentIndex + 1) % photos.length;    renderCarousel();  });
+          // --- Álbum animado (carrossel estilo bandeja) ---  
+        const carousel = document.getElementById('carousel');  
+        const prevBtn = document.getElementById('prevBtn');  
+        const nextBtn = document.getElementById('nextBtn');  
+        const addPhotoBtn = document.getElementById('add-photo-btn');  
+        const photoInput = document.getElementById('photo-url-input');
+
+        // Fotos padrão (exemplos reais para garantir que apareçam)  
+        const defaultPhotos = [    
+          'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',    
+          'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80',    
+          'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=80',    
+          'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=80',    
+          'https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=800&q=80'  
+        ];
+
+        // Tenta carregar do localStorage, senão usa padrão  
+        let photos = [];  
+        try {    
+          const stored = localStorage.getItem('photos');    
+          photos = stored ? JSON.parse(stored) : defaultPhotos;  
+        } catch {    
+          photos = defaultPhotos;  
+        }
+
+        let currentIndex = 0;
+        let isTransitioning = false;
+
+        function renderCarousel() {    
+          if (isTransitioning) return;
+          
+          carousel.innerHTML = '';    
+          // Mostra 3 fotos: atual + 2 atrás (para efeito bandeja)    
+          for(let i = 2; i >= 0; i--) {      
+            let index = (currentIndex - i + photos.length) % photos.length;      
+            const img = document.createElement('img');      
+            img.src = photos[index];      
+            img.alt = `Foto ${index + 1} do álbum`;      
+            img.setAttribute('tabindex', '0');      
+            img.title = 'Clique para trazer esta foto para frente';
+            
+            // Adiciona animação de entrada suave
+            img.style.opacity = '0';
+            img.style.transform = `scale(0.8) translateY(20px)`;
+            
+            img.addEventListener('click', () => {        
+              if (!isTransitioning) {
+                currentIndex = index;        
+                animateTransition();
+              }
+            });      
+            carousel.appendChild(img);
+            
+            // Anima a entrada da imagem
+            setTimeout(() => {
+              img.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+              img.style.opacity = '';
+              img.style.transform = '';
+            }, i * 100);
+          }  
+        }
+        
+        function animateTransition() {
+          isTransitioning = true;
+          
+          // Adiciona efeito de fade out nas imagens atuais
+          const currentImages = carousel.querySelectorAll('img');
+          currentImages.forEach((img, index) => {
+            img.style.transition = 'all 0.4s ease-out';
+            img.style.opacity = '0';
+            img.style.transform = 'scale(0.9) translateY(-10px)';
+          });
+          
+          // Após a animação de saída, renderiza as novas imagens
+          setTimeout(() => {
+            renderCarousel();
+            isTransitioning = false;
+          }, 400);
+        }
+          function savePhotos() {    
+          localStorage.setItem('photos', JSON.stringify(photos));  
+        }
+
+        prevBtn.addEventListener('click', () => {    
+          if (!isTransitioning) {
+            currentIndex = (currentIndex - 1 + photos.length) % photos.length;    
+            animateTransition();
+          }
+        });
+
+        nextBtn.addEventListener('click', () => {    
+          if (!isTransitioning) {
+            currentIndex = (currentIndex + 1) % photos.length;    
+            animateTransition();
+          }
+        });
           addPhotoBtn.addEventListener('click', () => {    const url = photoInput.value.trim();    if(url && isValidUrl(url)) {      if(photos.includes(url)) {        alert('Esta foto já está no álbum.');        return;      }      photos.push(url);      savePhotos();      currentIndex = photos.length - 1; // mostra a nova foto      renderCarousel();      photoInput.value = '';    } else {      alert('Por favor, insira uma URL válida de imagem.');    }  });
           function isValidUrl(string) {    try {      new URL(string);      return true;    } catch (_) {      return false;    }  }
           renderCarousel();
