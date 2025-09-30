@@ -117,7 +117,7 @@
           }
           
           /* Garantir que o conteúdo fique acima do efeito de fundo */
-          h1, #letter, #timer, .carousel-container, #add-photo-section, #spotify-player {
+          h1, #letter, #timer, .carousel-container, #spotify-player {
             position: relative;
             z-index: 2;
           }
@@ -166,38 +166,19 @@
             box-shadow: 0 8px 20px rgba(214, 51, 108, 0.5);    
             transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);    
             cursor: pointer;    
-            user-select: none;  
+            user-select: none;
+            top: 0;
+            left: 0;
+            opacity: 1 !important;
+            transform: scale(1) rotate(0deg) !important;
+            z-index: 3 !important;
           }  
           
           .carousel img:hover {
             transform: scale(1.05) !important;
             box-shadow: 0 12px 30px rgba(214, 51, 108, 0.7);
             z-index: 10 !important;
-          }
-          
-          /* Camadas atrás com deslocamento e escala */  
-          .carousel img:nth-child(1) {    
-            top: 20px;    
-            left: 20px;    
-            transform: scale(0.85) rotate(-5deg);    
-            z-index: 1;    
-            opacity: 0.6;  
           }  
-          
-          .carousel img:nth-child(2) {    
-            top: 10px;    
-            left: 10px;    
-            transform: scale(0.92) rotate(-2deg);    
-            z-index: 2;    
-            opacity: 0.8;  
-          }  
-          
-          .carousel img:nth-child(3) {    
-            top: 0;    
-            left: 0;    
-            transform: scale(1) rotate(0deg);    
-            z-index: 3;    
-            opacity: 1;  
           }  
           
           /* Esconde imagens extras */  
@@ -261,8 +242,8 @@
           #spotify-player {
             display: flex; 
             justify-content: center; 
-            margin-bottom: 30px;
-            animation: scaleIn 1s ease-out 2.8s both;
+            margin: 80px 0 50px 0;
+            animation: fadeIn 1s ease-out 3s both;
           }
           
           #spotify-player iframe {
@@ -315,16 +296,40 @@
         <iframe src="https://open.spotify.com/embed/playlist/77PWyQTj8XXjaZugi4LL9B?si=X752HVK_SlOGGgvuUcC1VQ" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" title="Playlist Spotify"></iframe>
     </div>
     <script>
-        // --- Falling flowers effect ---  const flowerEmoji = '🌸';  const flowerCount = 30;
-          function createFlower() {    const flower = document.createElement('div');    flower.classList.add('flower');    flower.textContent = flowerEmoji;    flower.style.left = Math.random() * 100 + 'vw';    flower.style.animationDuration = (5 + Math.random() * 5) + 's';    flower.style.fontSize = (20 + Math.random() * 20) + 'px';    flower.style.opacity = 0.7 + Math.random() * 0.3;    document.body.appendChild(flower);
-            flower.addEventListener('animationend', () => {      flower.style.left = Math.random() * 100 + 'vw';      flower.style.animationDuration = (5 + Math.random() * 5) + 's';      flower.style.fontSize = (20 + Math.random() * 20) + 'px';      flower.style.opacity = 0.7 + Math.random() * 0.3;      flower.style.animation = 'none';      void flower.offsetWidth;      flower.style.animation = '';    });  }
-          for(let i = 0; i < flowerCount; i++) {    createFlower();  }
+        // --- Falling flowers effect ---
+        const flowerEmoji = '🌸';
+        const flowerCount = 30;
+        
+        function createFlower() {
+            const flower = document.createElement('div');
+            flower.classList.add('flower');
+            flower.textContent = flowerEmoji;
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = (5 + Math.random() * 5) + 's';
+            flower.style.fontSize = (20 + Math.random() * 20) + 'px';
+            flower.style.opacity = 0.7 + Math.random() * 0.3;
+            document.body.appendChild(flower);
+            
+            flower.addEventListener('animationend', () => {
+                flower.style.left = Math.random() * 100 + 'vw';
+                flower.style.animationDuration = (5 + Math.random() * 5) + 's';
+                flower.style.fontSize = (20 + Math.random() * 20) + 'px';
+                flower.style.opacity = 0.7 + Math.random() * 0.3;
+                flower.style.animation = 'none';
+                void flower.offsetWidth;
+                flower.style.animation = '';
+            });
+        }
+        
+        for(let i = 0; i < flowerCount; i++) {
+            createFlower();
+        }
           // --- Álbum animado (carrossel estilo bandeja) ---  
         const carousel = document.getElementById('carousel');  
         const prevBtn = document.getElementById('prevBtn');  
         const nextBtn = document.getElementById('nextBtn');
 
-        // Fotos pré-definidas (10 fotos) - SUBSTITUA PELOS SEUS LINKS  
+        // Fotos pré-definidas (9 fotos) - SUBSTITUA PELOS SEUS LINKS  
         const photos = [    
           'https://i.postimg.cc/1t6Ktsc6/Whats-App-Image-2025-09-30-at-12-17-31.jpg',    
           'https://i.postimg.cc/tgdTCcnC/Whats-App-Image-2025-09-30-at-12-17-27.jpg',    
@@ -334,90 +339,102 @@
           'https://i.postimg.cc/nLfrxxrJ/Whats-App-Image-2025-09-30-at-12-17-29.jpg',
           'https://i.postimg.cc/fbQyssyQ/Whats-App-Image-2025-09-30-at-12-17-29-1.jpg',
           'https://i.postimg.cc/yNCxKKx4/Whats-App-Image-2025-09-30-at-12-17-30.jpg',
-          'https://i.postimg.cc/Jzk0S01c/Whats-App-Image-2025-09-30-at-12-17-30-1.jpg',
           'https://i.postimg.cc/Jzk0S01c/Whats-App-Image-2025-09-30-at-12-17-30-1.jpg'
         ];
+
+        console.log('Array de fotos carregado:', photos);
+        console.log('Total de fotos:', photos.length);
 
         let currentIndex = 0;
         let isTransitioning = false;
 
-        function renderCarousel() {    
-          if (isTransitioning) return;
-          
-          carousel.innerHTML = '';    
-          // Mostra 3 fotos: atual + 2 atrás (para efeito bandeja)    
-          for(let i = 2; i >= 0; i--) {      
-            let index = (currentIndex - i + photos.length) % photos.length;      
-            const img = document.createElement('img');      
-            img.src = photos[index];      
-            img.alt = `Foto ${index + 1} do álbum`;      
-            img.setAttribute('tabindex', '0');      
-            img.title = 'Clique para trazer esta foto para frente';
+        function renderCarousel() {
+            console.log('🎯 FUNÇÃO RENDERCAROUSEL CHAMADA!');
+            console.log('isTransitioning:', isTransitioning);
+            console.log('currentIndex:', currentIndex);
+            console.log('photos.length:', photos.length);
             
-            // Adiciona animação de entrada suave
-            img.style.opacity = '0';
-            img.style.transform = `scale(0.8) translateY(20px)`;
+            if (isTransitioning) {
+                console.log('❌ Renderização bloqueada - transição em andamento');
+                return;
+            }
             
-            img.addEventListener('click', () => {        
-              if (!isTransitioning) {
-                currentIndex = index;        
-                animateTransition();
-              }
-            });      
+            console.log('✅ Iniciando renderização...');
+            carousel.innerHTML = '';
+            console.log('DOM limpo');
+            
+            // Simplificado: mostra apenas a imagem atual
+            const img = document.createElement('img');
+            img.src = photos[currentIndex];
+            img.alt = `Foto ${currentIndex + 1} do álbum`;
+            img.setAttribute('tabindex', '0');
+            img.title = `Foto ${currentIndex + 1} de ${photos.length}`;
+            
+            console.log('🖼️ Criando imagem:', img.src);
+            
+            // Logs para debug
+            img.onload = function() {
+                console.log(`✅ Imagem ${currentIndex} carregada com sucesso:`, this.src);
+            };
+            
+            img.onerror = function() {
+                console.error(`❌ ERRO ao carregar imagem ${currentIndex}:`, this.src);
+            };
+            
             carousel.appendChild(img);
-            
-            // Anima a entrada da imagem
-            setTimeout(() => {
-              img.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-              img.style.opacity = '';
-              img.style.transform = '';
-            }, i * 100);
-          }  
+            console.log(`✅ Imagem ${currentIndex} adicionada ao DOM`);
+            console.log('Elementos no carousel:', carousel.children.length);
         }
         
         function animateTransition() {
-          isTransitioning = true;
-          
-          // Adiciona efeito de fade out nas imagens atuais
-          const currentImages = carousel.querySelectorAll('img');
-          currentImages.forEach((img, index) => {
-            img.style.transition = 'all 0.4s ease-out';
-            img.style.opacity = '0';
-            img.style.transform = 'scale(0.9) translateY(-10px)';
-          });
-          
-          // Após a animação de saída, renderiza as novas imagens
-          setTimeout(() => {
+            if (isTransitioning) return;
+            
+            isTransitioning = true;
+            console.log('Iniciando transição para índice:', currentIndex);
+            
+            // Simplesmente renderiza o carrossel sem animações complexas
             renderCarousel();
-            isTransitioning = false;
-          }, 400);
+            
+            // Libera o bloqueio após um pequeno delay
+            setTimeout(() => {
+                isTransitioning = false;
+                console.log('Transição concluída');
+            }, 100);
         }
-
-        prevBtn.addEventListener('click', () => {    
-          if (!isTransitioning) {
-            currentIndex = (currentIndex - 1 + photos.length) % photos.length;    
-            animateTransition();
-          }
+        
+        // Event listeners para os botões
+        console.log('Configurando event listeners...');
+        console.log('prevBtn:', prevBtn);
+        console.log('nextBtn:', nextBtn);
+        
+        prevBtn.addEventListener('click', () => {
+            console.log('🔥 CLIQUE NO BOTÃO ANTERIOR DETECTADO!');
+            console.log('isTransitioning:', isTransitioning);
+            if (!isTransitioning) {
+                console.log('Botão anterior clicado. Index atual:', currentIndex);
+                currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+                console.log('Novo index:', currentIndex);
+                animateTransition();
+            } else {
+                console.log('Transição em andamento, clique ignorado');
+            }
         });
-
-        nextBtn.addEventListener('click', () => {    
-          if (!isTransitioning) {
-            currentIndex = (currentIndex + 1) % photos.length;    
-            animateTransition();
-          }
+        
+        nextBtn.addEventListener('click', () => {
+            console.log('🔥 CLIQUE NO BOTÃO PRÓXIMO DETECTADO!');
+            console.log('isTransitioning:', isTransitioning);
+            if (!isTransitioning) {
+                console.log('Botão próximo clicado. Index atual:', currentIndex);
+                currentIndex = (currentIndex + 1) % photos.length;
+                console.log('Novo index:', currentIndex);
+                animateTransition();
+            } else {
+                console.log('Transição em andamento, clique ignorado');
+            }
         });
-
+        
+        // Inicializar carrossel
         renderCarousel();
-          // --- Timer ---  const timerEl = document.getElementById('timer');  const startDate = new Date('2025-07-03T00:00:00');
-          function pad(number, digits = 2) {    return number.toString().padStart(digits, '0');  }
-          function updateTimer() {    const now = new Date();    let diff = now - startDate;
-            if(diff < 0) {      timerEl.textContent = 'Ainda não começamos nosso namoro! ❤️';      return;    }
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));    diff -= days * (1000 * 60 * 60 * 24);
-            const hours = Math.floor(diff / (1000 * 60 * 60));    diff -= hours * (1000 * 60 * 60);
-            const minutes = Math.floor(diff / (1000 * 60));    diff -= minutes * (1000 * 60);
-            const seconds = Math.floor(diff / 1000);
-            timerEl.textContent = `Juntos há: ${days} dias ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;  }
-          updateTimer();  setInterval(updateTimer, 1000);
     </script>
 </body>
 
